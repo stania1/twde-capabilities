@@ -1,7 +1,7 @@
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.8" // can't find some spark deps on 2.12
 
-val sparkVersion = "2.2.0"
+val sparkVersion = "2.3.0"
 
 lazy val root = (project in file(".")).
   settings(
@@ -21,6 +21,7 @@ lazy val root = (project in file(".")).
       "com.datastax.spark" %% "spark-cassandra-connector" % "2.0.7",
       "com.typesafe" % "config" % "1.3.2",
       "org.apache.spark" %% "spark-streaming" % sparkVersion,
-      "org.apache.spark" %% "spark-streaming-kafka" % "1.6.3"
+      "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion, // don't depend on kafka-clients directly
+      "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
     )
   )
